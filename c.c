@@ -41,32 +41,63 @@
 }
 
 
-int main(void) {
-    int x, y, z;
-
-    while (1) {
-        x = 0;
-        y = 1;
-        do {
-            printf("%d\n", x);
-
-            z = x + y;
-            x = y;
-            y = z;
-        } while(x < 255);
-    }
-}/
-
 int main() {
-    int nombre[5];
-    int somme = 0;
+    int nombres[100];
+    int n, somme = 0;
+    int min, max;
 
-    for(int i =1; i <= 5; i++) {
-        printf("Entrez le nombre:", i + 1);
-        scanf("%d", &nombre[i]);
-        somme += nombre[i];
+    do {
+        printf("Combien de nombres ? ");
+        scanf("%d", &n);
+    } while (n < 1 || n > 100);
+
+    for (int i = 0; i < n; i++) {
+        printf("Nombre %d : ", i + 1);
+        scanf("%d", &nombres[i]);
+        somme += nombres[i];
     }
-    for
-    printf("\nLa somme des 5 nombres est :", somme);
+
+    min = nombres[0];
+    max = nombres[0];
+
+    for (int i = 1; i < n; i++) {
+        if (nombres[i] < min) {
+            min = nombres[i];
+        }
+        if (nombres[i] > max) {
+            max = nombres[i];
+        }
+    }
+
+    printf("Tableau : ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", nombres[i]);
+    }
+
+    printf("\nSomme : %d\n", somme);
+    printf("Plus petit : %d\n", min);
+    printf("Plus grand : %d\n", max);
+
+    // Tri par sélection
+    for (int i = 0; i < n - 1; i++) {
+        int min_index = i;
+        for (int j = i + 1; j < n; j++) {
+            if (nombres[j] < nombres[min_index]) {
+                min_index = j;
+            }
+        }
+        int temp = nombres[i];
+        nombres[i] = nombres[min_index];
+        nombres[min_index] = temp;
+    }
+
+    printf("Tableau trié : ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", nombres[i]);
+    }
+    printf("\n");
+
     return 0;
 }
+
+
