@@ -1,0 +1,32 @@
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int n;
+
+    printf("Combien de valeurs ? ");
+    scanf("%d", &n);
+
+    int tab[n];
+    double logs[n];
+
+    // Saisie
+    for (int i = 0; i < n; i++) {
+        printf("Valeur %d : ", i + 1);
+        scanf("%d", &tab[i]);
+    }
+
+    // Calcul du log
+    for (int i = 0; i < n; i++) {
+        logs[i] = log(tab[i]); // log népérien (log_e)
+    }
+
+    // Affichage
+    printf("\n--- LOGS DES VALEURS ---\n");
+    for (int i = 0; i < n; i++) {
+        printf("log(%d) = %lf\n", tab[i], logs[i]);
+    }
+
+    return 0;
+}
