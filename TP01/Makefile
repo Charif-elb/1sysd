@@ -1,7 +1,7 @@
 .PHONY: all clean
 
 # Changer cette ligne en l'adapter à chaque TP
-PROGS=sum5 sum5tab maxminsum
+PROGS=asks boomer game random
 CC=gcc
 CFLAGS=
 # Rien à changer à partir d'ici

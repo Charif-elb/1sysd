@@ -1,6 +1,6 @@
 .PHONY: all clean
 
-PROGS=vador
+PROGS=matrix
 CC=gcc
 CFLAGS=
 
