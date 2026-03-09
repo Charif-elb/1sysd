@@ -1,28 +1,18 @@
+.PHONY: all clean
 
-CC      := gcc
-CFLAGS  := -Wall -Wextra -Werror -std=c11
+# Changer cette ligne en l'adapter à chaque TP
+PROGS=countchar1 countchar2 countint intlist
+CC=gcc
+CFLAGS=
+# Rien à changer à partir d'ici
 
-# Nom de l'exécutable
-EXEC    := examen
+all: $(PROGS)
 
-# Liste des fichiers du dossier Examen
-SRC     := countchar1.c countchar2.c countint.c intlist.c
-OBJ     := $(SRC:.c=.o)
+%: %.c
+	$(CC) $(CFLAGS) -o $@ $< 
 
-all: $(EXEC)
-
-$(EXEC): $(OBJ)
-    $(CC) $(OBJ) -o $(EXEC)
-
-%.o: %.c
-    $(CC) $(CFLAGS) -c $< -o $@
+%.s: %.c
+	$(CC) -S $<
 
 clean:
-    rm -f $(OBJ)
-
-fclean: clean
-    rm -f $(EXEC)
-
-re: fclean all
-
-.PHONY: all clean fclean re
+	rm -f $(PROGS) *.s
