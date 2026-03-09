@@ -1,24 +1,28 @@
 #include <stdio.h>
 
-int count_char(char *chaine, char caractere) {
-    int i;
-    int compteur;
+int compter(const char *texte, char c)
+{
+    int k = 0;
+    int total = 0;
 
-    compteur = 0;
-    for (i = 0; chaine[i] != '\0'; i++) {
-        if (chaine[i] == caractere)
-            compteur++;
+    while (texte[k] != '\0') {
+        if (texte[k] == c)
+            total++;
+        k++;
     }
-    return compteur;
+    return total;
 }
 
-
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv)
+{
     if (argc < 3) {
-        printf("Usage : %s <chaine> <caractere>\n", argv[0]);
+        printf("Utilisation : %s <chaine> <caractere>\n", argv[0]);
         return 1;
     }
 
-    printf("%d\n", count_char(argv[1], argv[2][0]));
+    char c = argv[2][0];
+    int resultat = compter(argv[1], c);
+
+    printf("%d\n", resultat);
     return 0;
 }
