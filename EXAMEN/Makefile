@@ -1,16 +1,28 @@
-.PHONY: all clean
 
-PROGS=intlist
-CC=gcc
-CFLAGS=
+CC      := gcc
+CFLAGS  := -Wall -Wextra -Werror -std=c11
 
-all: $(PROGS)
+# Nom de l'exécutable
+EXEC    := examen
 
-%: %.c
-	$(CC) $(CFLAGS) -o $@ $< 
+# Liste des fichiers du dossier Examen
+SRC     := countchar1.c countchar2.c countint.c intlist.c
+OBJ     := $(SRC:.c=.o)
 
-%.s: %.c
-	$(CC) -S $<
+all: $(EXEC)
+
+$(EXEC): $(OBJ)
+    $(CC) $(OBJ) -o $(EXEC)
+
+%.o: %.c
+    $(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(PROGS)
+    rm -f $(OBJ)
+
+fclean: clean
+    rm -f $(EXEC)
+
+re: fclean all
+
+.PHONY: all clean fclean re
