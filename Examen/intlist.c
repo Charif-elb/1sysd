@@ -86,4 +86,3 @@ int main(void)
     liberer(liste);
     return 0;
 }
-
